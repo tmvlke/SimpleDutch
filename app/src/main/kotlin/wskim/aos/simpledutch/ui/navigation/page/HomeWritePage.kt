@@ -8,20 +8,21 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import wskim.aos.simpledutch.ui.feature.homeTab.HomeContract
-import wskim.aos.simpledutch.ui.feature.homeTab.HomeViewModel
-import wskim.aos.simpledutch.ui.feature.homeTab.composables.HomeScreen
+import wskim.aos.simpledutch.ui.feature.homeInsert.HomeWriteContract
+import wskim.aos.simpledutch.ui.feature.homeInsert.HomeWriteViewModel
+import wskim.aos.simpledutch.ui.feature.homeInsert.composables.HomeWriteScreen
 import wskim.aos.simpledutch.ui.navigation.PageMoveActions
 
 @Composable
-fun HomePage(actions: PageMoveActions, navBackStackEntry: NavBackStackEntry) {
+fun HomeWritePage(actions: PageMoveActions, navBackStackEntry: NavBackStackEntry) {
+
     val coroutineScope: CoroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
-    val viewModel: HomeViewModel = viewModel(
+    val viewModel: HomeWriteViewModel = viewModel(
         factory = HiltViewModelFactory(context, navBackStackEntry)
     )
 
-    HomeScreen(
+    HomeWriteScreen(
         state = viewModel.viewState.value,
         effectFlow = viewModel.effect,
         onEventSent = { event -> viewModel.setEvent(event) },
@@ -29,7 +30,7 @@ fun HomePage(actions: PageMoveActions, navBackStackEntry: NavBackStackEntry) {
             coroutineScope.launch {
 
                 when (navigationEffect) {
-                    is HomeContract.Effect.Navigation.GoToHomeWrite -> actions.gotoHomeWrite.invoke()
+                    is HomeWriteContract.Effect.Navigation.GoToBack -> actions.upPress.invoke()
                 }
             }
         }

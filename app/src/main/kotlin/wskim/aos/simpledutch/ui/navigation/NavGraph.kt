@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import wskim.aos.simpledutch.ui.navigation.page.HomeWritePage
 import wskim.aos.simpledutch.ui.navigation.page.MainPage
 import wskim.aos.simpledutch.ui.navigation.page.SplashPage
 
@@ -32,12 +33,9 @@ fun NavGraph() {
             MainPage(actions, it)
         }
 
-        // 회원 가입 - 약관 동의 페이지
-//        buildStartToEndPage(
-//            PageList.LoginMain.SignUpUserInfo.SignUpPolicyTermsPage.route,
-//            SignUpPolicyTermsArgument::class.java.simpleName
-//        ) {
-//            SignUpPolicyTermsPage(actions, it)
-//        }
+        // 홈 글쓰기 페이지
+        buildTopToBottomPage(PageList.HomeWrite.route) {
+            HomeWritePage(actions, it)
+        }
     }
 }

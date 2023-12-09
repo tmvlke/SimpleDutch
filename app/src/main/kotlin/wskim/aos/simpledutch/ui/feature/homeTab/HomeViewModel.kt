@@ -24,7 +24,8 @@ class HomeViewModel @Inject constructor(
     }
 
     override fun setInitialState(): HomeContract.State = HomeContract.State(
-        screenState = mutableStateOf(SdV1ScreenStateEnum.SUCCESS)
+        screenState = mutableStateOf(SdV1ScreenStateEnum.SUCCESS),
+        list = mutableListOf()
     )
 
     override suspend fun setInitialData() {
@@ -35,15 +36,9 @@ class HomeViewModel @Inject constructor(
 
     override fun handleEvents(event: HomeContract.Event) {
         when (event) {
-            is HomeContract.Event.SignUpButtonSelection -> setEffect {
-                HomeContract.Effect.Navigation.GoToSignUp
-            }
-
-            is HomeContract.Event.SignInButtonSelection -> setEffect {
-                HomeContract.Effect.Navigation.GoToSignIn
+            is HomeContract.Event.HomeWriteButtonClicked -> setEffect {
+                HomeContract.Effect.Navigation.GoToHomeWrite
             }
         }
     }
-
-
 }

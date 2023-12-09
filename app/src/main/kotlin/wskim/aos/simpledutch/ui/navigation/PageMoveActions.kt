@@ -4,7 +4,8 @@ import androidx.navigation.NavController
 
 class PageMoveActions(navController: NavController) :
     Common,
-    Main
+    Main,
+    Home
 {
     override val upPress: () -> Unit = {
         navController.navigateUp()
@@ -19,6 +20,10 @@ class PageMoveActions(navController: NavController) :
         navController.popBackStack()
         navController.navigate(PageList.Main.route)
     }
+
+    override val gotoHomeWrite: () -> Unit = {
+        navController.navigate(PageList.HomeWrite.route)
+    }
 }
 
 interface BasePageMoveActions
@@ -30,4 +35,8 @@ interface Common : BasePageMoveActions {
 
 interface Main : BasePageMoveActions {
     val gotoMain: () -> Unit
+}
+
+interface Home : BasePageMoveActions {
+    val gotoHomeWrite: () -> Unit
 }

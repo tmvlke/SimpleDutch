@@ -2,4 +2,11 @@
 <resources>
 
     <style name="Theme.SimpleDutch" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Theme.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@color/white</item>
+        <item name="windowSplashScreenAnimationDuration">0</item>
+        <item name="postSplashScreenTheme">@style/Theme.SimpleDutch</item>
+    </style>
 </resources>
