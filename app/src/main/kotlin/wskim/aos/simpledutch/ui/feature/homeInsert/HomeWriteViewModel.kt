@@ -9,12 +9,13 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import wskim.aos.simpledutch.common.base.SdV1ScreenStateEnum
 import wskim.aos.simpledutch.common.base.SdV1ViewModel
-import wskim.aos.simpledutch.core.bl.useCase.UserInfoUseCase
+import wskim.aos.simpledutch.core.bl.useCase.DutchInfoUseCase
+import wskim.aos.simpledutch.progaurdSafeZone.HomeDutchListItemVO
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeWriteViewModel @Inject constructor(
-    private val userInfoUseCase: UserInfoUseCase,
+    private val dutchInfoUseCase: DutchInfoUseCase,
 ) : SdV1ViewModel<HomeWriteContract.Event, HomeWriteContract.State, HomeWriteContract.Effect>() {
 
     init {
@@ -42,65 +43,70 @@ class HomeWriteViewModel @Inject constructor(
     }
 
     override fun handleUiMonitoring() {
-        viewState.value.title.onEach {
-            setState {
-                copy(
-                    completeButtonEnabled = mutableStateOf(
-                        it.isNotEmpty() && amount.value.isNotEmpty() && enterPersonList.isNotEmpty()
-                    )
-                )
-            }
-        }.launchIn(viewModelScope)
-
-        viewState.value.amount.onEach {
-            setState {
-                copy(
-                    completeButtonEnabled = mutableStateOf(
-                        title.value.isNotEmpty() && it.isNotEmpty() && enterPersonList.isNotEmpty()
-                    )
-                )
-            }
-        }.launchIn(viewModelScope)
+        viewState.value.title.onEach { processedDutchWriteValidation() }.launchIn(viewModelScope)
+        viewState.value.amount.onEach { processedDutchWriteValidation() }.launchIn(viewModelScope)
     }
 
     override fun handleEvents(event: HomeWriteContract.Event) {
         when (event) {
-            is HomeWriteContract.Event.BackButtonClicked -> setEffect {
-                HomeWriteContract.Effect.Navigation.GoToBack
-            }
-
-            is HomeWriteContract.Event.SaveEnterPersonClicked -> {
-
-                if (viewState.value.enterPersonName.value.isEmpty()) return
-
-                viewState.value.enterPersonList.add(viewState.value.enterPersonName.value)
-                setState {
-                    copy(
-                        enterPersonName = mutableStateOf(""),
-                        completeButtonEnabled = mutableStateOf(
-                            title.value.isNotEmpty() && amount.value.isNotEmpty() && enterPersonList.isNotEmpty()
-                        )
-                    )
-                }
-            }
-
-            is HomeWriteContract.Event.RemoveEnterPersonClicked -> {
-                viewState.value.enterPersonList.removeAt(event.position)
-                setState {
-                    copy(
-                        completeButtonEnabled = mutableStateOf(
-                            title.value.isNotEmpty() && amount.value.isNotEmpty() && enterPersonList.isNotEmpty()
-                        )
-                    )
-                }
-            }
-
-            is HomeWriteContract.Event.CompleteButtonClicked -> {
-                if (!viewState.value.completeButtonEnabled.value) return
-
-                setEffect { HomeWriteContract.Effect.Toast.ShowComplete }
-                setEffect { HomeWriteContract.Effect.Navigation.GoToBack }
-            }
+            is HomeWriteContract.Event.BackButtonClicked -> backButtonClicked()
+            is HomeWriteContract.Event.SaveEnterPersonClicked -> saveEnterPersonClicked()
+            is HomeWriteContract.Event.RemoveEnterPersonClicked -> removeEnterPersonClicked(event.position)
+            is HomeWriteContract.Event.CompleteButtonClicked -> completeButtonClicked()
         }
+    }
+
+    // 뒤로가기 버튼 클릭
+    private fun backButtonClicked() {
+        setEffect { HomeWriteContract.Effect.Navigation.GoToBack }
+    }
+
+    // 더치 페이 글쓰기 전 유효성 체크
+    private fun processedDutchWriteValidation() {
+        setState {
+            copy(
+                completeButtonEnabled = mutableStateOf(
+                    dutchInfoUseCase.processedDutchWriteValidation(
+                        title = title.value,
+                        amount = amount.value,
+                        enterPersonList = enterPersonList
+                    )
+                )
+            )
+        }
+    }
+
+    // 참여자 추가 버튼 클릭
+    private fun saveEnterPersonClicked() {
+        viewState.value.enterPersonList.add(viewState.value.enterPersonName.value)
+        setState { copy(enterPersonName = mutableStateOf("")) }
+        processedDutchWriteValidation()
+    }
+
+    // 참여자 삭제 버튼 클릭
+    private fun removeEnterPersonClicked(position: Int) {
+        viewState.value.enterPersonList.removeAt(position)
+        processedDutchWriteValidation()
+    }
+
+    // 더치 페이 추가 버튼 클릭
+    private fun completeButtonClicked() {
+        // 저장 전 참여자 목록이 빈값이면 진행 불가
+        if (!viewState.value.completeButtonEnabled.value) return
+
+        // 저장 하기
+        viewState.value.also {
+            dutchInfoUseCase.saveDutchInfo(
+                HomeDutchListItemVO(
+                    title = it.title.value,
+                    amount = it.amount.value,
+                    enterPersonList = it.enterPersonList
+                )
+            )
+        }
+
+        // 저장 완료 토스트 노출 및 뒤로가기
+        setEffect { HomeWriteContract.Effect.Toast.ShowComplete }
+        setEffect { HomeWriteContract.Effect.Navigation.GoToBack }
     }
 }

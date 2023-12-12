@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -21,7 +22,7 @@ import kotlinx.coroutines.flow.Flow
 import wskim.aos.simpledutch.common.base.BaseScreen
 import wskim.aos.simpledutch.common.base.SIDE_EFFECTS_KEY
 import wskim.aos.simpledutch.common.base.SdV1ScreenStateEnum
-import wskim.aos.simpledutch.progaurdSafeZone.HomeDutchListItem
+import wskim.aos.simpledutch.progaurdSafeZone.HomeDutchListItemVO
 import wskim.aos.simpledutch.ui.feature.homeTab.HomeContract
 import wskim.aos.simpledutch.ui.theme.Blue
 
@@ -29,16 +30,16 @@ import wskim.aos.simpledutch.ui.theme.Blue
 @Composable
 fun HomeScreenPreview() {
 
-    val list = arrayListOf<HomeDutchListItem>()
+    val list = arrayListOf<HomeDutchListItemVO>()
     repeat(3) {
-        list.add(HomeDutchListItem(name = "${it}차", price = 1000 * it, enterCount = 1 + it))
+        list.add(HomeDutchListItemVO(title = "${it}차", amount = (1000 * it).toString(), enterPersonList = arrayListOf()))
     }
 
 
     HomeScreen(
         state = HomeContract.State(
             screenState = remember { mutableStateOf(SdV1ScreenStateEnum.SUCCESS) },
-            list = list
+            list = list.toMutableStateList()
         ),
         effectFlow = null,
         onEventSent = {},
@@ -54,6 +55,8 @@ fun HomeScreen(
     onNavigationRequested: (HomeContract.Effect.Navigation) -> Unit
 ) {
     LaunchedEffect(SIDE_EFFECTS_KEY) {
+        onEventSent(HomeContract.Event.OnResume)
+
         effectFlow?.collect { effect ->
             when (effect) {
                 is HomeContract.Effect.Navigation -> {

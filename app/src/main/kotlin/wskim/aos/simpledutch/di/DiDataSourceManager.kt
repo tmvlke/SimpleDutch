@@ -5,8 +5,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import wskim.aos.simpledutch.core.SharedPreferencesManager
-import wskim.aos.simpledutch.core.bl.dataSource.UserInfoDataSource
-import wskim.aos.simpledutch.core.bl.dataSource.lmpl.UserInfoDataSourceImpl
+import wskim.aos.simpledutch.core.bl.dataSource.DutchInfoDataSource
+import wskim.aos.simpledutch.core.bl.dataSource.lmpl.DutchInfoDataSourceImpl
 import javax.inject.Singleton
 
 @Module
@@ -17,8 +17,8 @@ class DiDataSourceManager {
     @Provides
     fun provideUserInfoDataSource(
         sharedPreferencesManager: SharedPreferencesManager
-    ): UserInfoDataSource {
-        return UserInfoDataSourceImpl(sharedPreferencesManager)
+    ): DutchInfoDataSource {
+        return DutchInfoDataSourceImpl(sharedPreferencesManager)
     }
 
 }

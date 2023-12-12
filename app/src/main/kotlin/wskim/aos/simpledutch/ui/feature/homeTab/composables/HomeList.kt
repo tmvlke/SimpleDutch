@@ -19,16 +19,16 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import wskim.aos.simpledutch.progaurdSafeZone.HomeDutchListItem
+import wskim.aos.simpledutch.progaurdSafeZone.HomeDutchListItemVO
 import wskim.aos.simpledutch.ui.theme.LightGray
 
 
 @Preview(showBackground = true)
 @Composable
 fun HomeListPreview() {
-    arrayListOf<HomeDutchListItem>().let { list ->
+    arrayListOf<HomeDutchListItemVO>().let { list ->
         repeat(3) {
-            list.add(HomeDutchListItem(name = "${it}차", price = 1000 * it, enterCount = 1 + it))
+            list.add(HomeDutchListItemVO(title = "${it}차", amount = (1000 * it).toString(), enterPersonList = arrayListOf()))
         }
         HomeList(list)
     }
@@ -41,7 +41,7 @@ fun HomeListEmptyPreview() {
 }
 
 @Composable
-fun HomeList(list: MutableList<HomeDutchListItem>) {
+fun HomeList(list: MutableList<HomeDutchListItemVO>) {
     // 더치 페이 목록
     if (list.isEmpty()) {
         Box(
@@ -73,17 +73,17 @@ fun HomeList(list: MutableList<HomeDutchListItem>) {
 }
 
 @Composable
-fun HomeListItem(item: HomeDutchListItem) {
+fun HomeListItem(item: HomeDutchListItemVO) {
 
     Column {
         ConstraintLayout(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            val (name, price, enterCount, divider) = createRefs()
+            val (name, price, enterCount) = createRefs()
 
             Text(
-                text = item.name,
+                text = item.title,
                 modifier = Modifier.constrainAs(name) {
                     start.linkTo(parent.start)
                     top.linkTo(parent.top)
@@ -92,7 +92,7 @@ fun HomeListItem(item: HomeDutchListItem) {
             )
 
             Text(
-                text = "${item.price}원",
+                text = "${item.amount}원",
                 modifier = Modifier.constrainAs(price) {
                     end.linkTo(parent.end)
                     top.linkTo(parent.top)
@@ -101,7 +101,7 @@ fun HomeListItem(item: HomeDutchListItem) {
             )
 
             Text(
-                text = "${item.enterCount}명",
+                text = "${item.enterPersonList.size}명",
                 modifier = Modifier.constrainAs(enterCount) {
                     end.linkTo(parent.end)
                     top.linkTo(price.bottom)

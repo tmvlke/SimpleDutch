@@ -1,15 +1,17 @@
 package wskim.aos.simpledutch.ui.feature.homeTab
 
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.toMutableStateList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import wskim.aos.simpledutch.common.base.SdV1ScreenStateEnum
 import wskim.aos.simpledutch.common.base.SdV1ViewModel
-import wskim.aos.simpledutch.core.bl.useCase.UserInfoUseCase
+import wskim.aos.simpledutch.core.bl.useCase.DutchInfoUseCase
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val userInfoUseCase: UserInfoUseCase,
+    private val dutchInfoUseCase: DutchInfoUseCase,
 ) : SdV1ViewModel<HomeContract.Event, HomeContract.State, HomeContract.Effect>() {
 
     init {
@@ -25,7 +27,7 @@ class HomeViewModel @Inject constructor(
 
     override fun setInitialState(): HomeContract.State = HomeContract.State(
         screenState = mutableStateOf(SdV1ScreenStateEnum.SUCCESS),
-        list = mutableListOf()
+        list = mutableStateListOf()
     )
 
     override suspend fun setInitialData() {
@@ -39,6 +41,11 @@ class HomeViewModel @Inject constructor(
             is HomeContract.Event.HomeWriteButtonClicked -> setEffect {
                 HomeContract.Effect.Navigation.GoToHomeWrite
             }
+            is HomeContract.Event.OnResume -> onResume()
         }
+    }
+
+    private fun onResume() {
+        setState { copy(list = dutchInfoUseCase.findDutchInfoList().toMutableStateList()) }
     }
 }
