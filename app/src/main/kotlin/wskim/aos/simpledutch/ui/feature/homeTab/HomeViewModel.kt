@@ -1,5 +1,6 @@
 package wskim.aos.simpledutch.ui.feature.homeTab
 
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.toMutableStateList
@@ -27,6 +28,7 @@ class HomeViewModel @Inject constructor(
 
     override fun setInitialState(): HomeContract.State = HomeContract.State(
         screenState = mutableStateOf(SdV1ScreenStateEnum.SUCCESS),
+        totalAmount = mutableIntStateOf(0),
         list = mutableStateListOf()
     )
 
@@ -38,14 +40,31 @@ class HomeViewModel @Inject constructor(
 
     override fun handleEvents(event: HomeContract.Event) {
         when (event) {
-            is HomeContract.Event.HomeWriteButtonClicked -> setEffect {
-                HomeContract.Effect.Navigation.GoToHomeWrite
-            }
             is HomeContract.Event.OnResume -> onResume()
+            is HomeContract.Event.HomeWriteButtonClicked -> homeWriteButtonClicked()
+            is HomeContract.Event.HomeEndButtonClicked -> homeEndButtonClicked()
         }
     }
 
     private fun onResume() {
-        setState { copy(list = dutchInfoUseCase.findDutchInfoList().toMutableStateList()) }
+        setState {
+            copy(
+                totalAmount = mutableIntStateOf(dutchInfoUseCase.findDutchTotalAmount()),
+                list = dutchInfoUseCase.findDutchInfoList().toMutableStateList()
+            )
+        }
+    }
+
+    private fun homeWriteButtonClicked() {
+        setEffect { HomeContract.Effect.Navigation.GoToHomeWrite }
+    }
+
+    private fun homeEndButtonClicked() {
+        if (viewState.value.list.isEmpty()) {
+            setEffect { HomeContract.Effect.Toast.ShowListEmpty }
+            return
+        }
+
+        setEffect { HomeContract.Effect.Navigation.GoToHomeEnd }
     }
 }

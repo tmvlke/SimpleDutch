@@ -10,7 +10,8 @@ import kotlinx.coroutines.flow.onEach
 import wskim.aos.simpledutch.common.base.SdV1ScreenStateEnum
 import wskim.aos.simpledutch.common.base.SdV1ViewModel
 import wskim.aos.simpledutch.core.bl.useCase.DutchInfoUseCase
-import wskim.aos.simpledutch.progaurdSafeZone.HomeDutchListItemVO
+import wskim.aos.simpledutch.progaurdSafeZone.DutchListItemVO
+import wskim.aos.simpledutch.progaurdSafeZone.DutchPersonVO
 import javax.inject.Inject
 
 @HiltViewModel
@@ -94,13 +95,25 @@ class HomeWriteViewModel @Inject constructor(
         // 저장 전 참여자 목록이 빈값이면 진행 불가
         if (!viewState.value.completeButtonEnabled.value) return
 
+
         // 저장 하기
         viewState.value.also {
+            val enterPersonList = ArrayList<DutchPersonVO>()
+
+            it.enterPersonList.onEach { name ->
+                enterPersonList.add(
+                    DutchPersonVO(
+                        name = name,
+                        isEnd = false
+                    )
+                )
+            }
+
             dutchInfoUseCase.saveDutchInfo(
-                HomeDutchListItemVO(
+                DutchListItemVO(
                     title = it.title.value,
                     amount = it.amount.value,
-                    enterPersonList = it.enterPersonList
+                    enterPersonList = enterPersonList
                 )
             )
         }

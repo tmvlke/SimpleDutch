@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import wskim.aos.simpledutch.ui.navigation.page.HomeEndPage
 import wskim.aos.simpledutch.ui.navigation.page.HomeWritePage
 import wskim.aos.simpledutch.ui.navigation.page.MainPage
 import wskim.aos.simpledutch.ui.navigation.page.SplashPage
@@ -36,6 +37,11 @@ fun NavGraph() {
         // 홈 글쓰기 페이지
         buildTopToBottomPage(PageList.HomeWrite.route) {
             HomeWritePage(actions, it)
+        }
+
+        // 홈 정산 페이지
+        buildTopToBottomPage(PageList.HomeEnd.route) {
+            HomeEndPage(actions, it)
         }
     }
 }

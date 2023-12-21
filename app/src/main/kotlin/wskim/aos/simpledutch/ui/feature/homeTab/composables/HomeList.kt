@@ -16,19 +16,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import wskim.aos.simpledutch.progaurdSafeZone.HomeDutchListItemVO
+import wskim.aos.simpledutch.core.util.CharFormatUtils
+import wskim.aos.simpledutch.progaurdSafeZone.DutchListItemVO
 import wskim.aos.simpledutch.ui.theme.LightGray
 
 
 @Preview(showBackground = true)
 @Composable
 fun HomeListPreview() {
-    arrayListOf<HomeDutchListItemVO>().let { list ->
+    arrayListOf<DutchListItemVO>().let { list ->
         repeat(3) {
-            list.add(HomeDutchListItemVO(title = "${it}차", amount = (1000 * it).toString(), enterPersonList = arrayListOf()))
+            list.add(DutchListItemVO(title = "${it}차", amount = (1000 * it).toString(), enterPersonList = arrayListOf()))
         }
         HomeList(list)
     }
@@ -41,7 +44,7 @@ fun HomeListEmptyPreview() {
 }
 
 @Composable
-fun HomeList(list: MutableList<HomeDutchListItemVO>) {
+fun HomeList(list: MutableList<DutchListItemVO>) {
     // 더치 페이 목록
     if (list.isEmpty()) {
         Box(
@@ -73,7 +76,7 @@ fun HomeList(list: MutableList<HomeDutchListItemVO>) {
 }
 
 @Composable
-fun HomeListItem(item: HomeDutchListItemVO) {
+fun HomeListItem(item: DutchListItemVO) {
 
     Column {
         ConstraintLayout(
@@ -88,11 +91,13 @@ fun HomeListItem(item: HomeDutchListItemVO) {
                     start.linkTo(parent.start)
                     top.linkTo(parent.top)
                     bottom.linkTo(parent.bottom)
-                }
+                },
+                fontSize = 16.sp,
+                fontWeight = FontWeight.SemiBold
             )
 
             Text(
-                text = "${item.amount}원",
+                text = CharFormatUtils.amount(item.amount),
                 modifier = Modifier.constrainAs(price) {
                     end.linkTo(parent.end)
                     top.linkTo(parent.top)

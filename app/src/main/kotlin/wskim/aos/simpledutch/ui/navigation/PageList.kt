@@ -47,4 +47,9 @@ sealed class PageList : SnPage {
         override val description = "홈 글쓰기 페이지"
         override val route = "HomeWrite"
     }
+
+    object HomeEnd : SnPage {
+        override val description = "홈 정산 페이지"
+        override val route = "HomeEnd"
+    }
 }

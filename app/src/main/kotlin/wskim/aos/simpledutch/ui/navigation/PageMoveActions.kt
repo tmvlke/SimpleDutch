@@ -24,6 +24,10 @@ class PageMoveActions(navController: NavController) :
     override val gotoHomeWrite: () -> Unit = {
         navController.navigate(PageList.HomeWrite.route)
     }
+
+    override val gotoHomeEnd: () -> Unit = {
+        navController.navigate(PageList.HomeEnd.route)
+    }
 }
 
 interface BasePageMoveActions
@@ -39,4 +43,5 @@ interface Main : BasePageMoveActions {
 
 interface Home : BasePageMoveActions {
     val gotoHomeWrite: () -> Unit
+    val gotoHomeEnd: () -> Unit
 }

@@ -7,7 +7,7 @@ object CharFormatUtils {
     fun amount(amount: Any?): String {
         // null 이면 빈값으로 반환함
         if (amount == null) {
-            return ""
+            return "0원"
         }
 
         return try {
@@ -19,9 +19,9 @@ object CharFormatUtils {
                 amountToLong > 1000 &&
                 !result.contains(",")
             ) {
-                NumberFormat.getNumberInstance(Locale.getDefault()).format(amountToLong)
+                NumberFormat.getNumberInstance(Locale.getDefault()).format(amountToLong) + "원"
             } else {
-                result
+                result + "원"
             }
         } catch (e: NumberFormatException) {
             amount.toString()

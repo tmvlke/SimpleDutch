@@ -42,7 +42,7 @@ import wskim.aos.simpledutch.common.base.SIDE_EFFECTS_KEY
 import wskim.aos.simpledutch.common.base.SdV1ScreenStateEnum
 import wskim.aos.simpledutch.common.compose.AppBar
 import wskim.aos.simpledutch.core.transformation.AmountTransformation
-import wskim.aos.simpledutch.progaurdSafeZone.HomeDutchListItemVO
+import wskim.aos.simpledutch.progaurdSafeZone.DutchListItemVO
 import wskim.aos.simpledutch.ui.feature.homeInsert.HomeWriteContract
 import wskim.aos.simpledutch.ui.theme.Blue
 import wskim.aos.simpledutch.ui.theme.Gray
@@ -52,9 +52,9 @@ import wskim.aos.simpledutch.ui.theme.LightGray
 @Composable
 fun HomeWriteScreenPreview() {
 
-    val list = arrayListOf<HomeDutchListItemVO>()
+    val list = arrayListOf<DutchListItemVO>()
     repeat(3) {
-        list.add(HomeDutchListItemVO(title = "${it}차", amount = (1000 * it).toString(), enterPersonList = arrayListOf()))
+        list.add(DutchListItemVO(title = "${it}차", amount = (1000 * it).toString(), enterPersonList = arrayListOf()))
     }
 
     HomeWriteScreen(

@@ -6,23 +6,29 @@ import wskim.aos.simpledutch.common.base.BaseViewEvent
 import wskim.aos.simpledutch.common.base.BaseViewSideEffect
 import wskim.aos.simpledutch.common.base.BaseViewState
 import wskim.aos.simpledutch.common.base.SdV1ScreenStateEnum
-import wskim.aos.simpledutch.progaurdSafeZone.HomeDutchListItemVO
+import wskim.aos.simpledutch.progaurdSafeZone.DutchListItemVO
 
 
 class HomeContract {
     sealed class Event : BaseViewEvent {
         object OnResume : Event()
         object HomeWriteButtonClicked : Event()
+        object HomeEndButtonClicked : Event()
     }
 
     data class State(
         override val screenState: MutableState<SdV1ScreenStateEnum>,
-        val list: SnapshotStateList<HomeDutchListItemVO>
+        val totalAmount: MutableState<Int>,
+        val list: SnapshotStateList<DutchListItemVO>
     ) : BaseViewState
 
     sealed class Effect : BaseViewSideEffect {
+        sealed class Toast : Effect() {
+            object ShowListEmpty : Toast()
+        }
         sealed class Navigation : Effect() {
             object GoToHomeWrite : Navigation()
+            object GoToHomeEnd : Navigation()
         }
     }
 }

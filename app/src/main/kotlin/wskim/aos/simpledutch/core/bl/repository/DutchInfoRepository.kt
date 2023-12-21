@@ -1,8 +1,15 @@
 package wskim.aos.simpledutch.core.bl.repository
 
-import wskim.aos.simpledutch.progaurdSafeZone.HomeDutchListItemVO
+import wskim.aos.simpledutch.progaurdSafeZone.DutchEndListItemVO
+import wskim.aos.simpledutch.progaurdSafeZone.DutchHistoryListItemVO
+import wskim.aos.simpledutch.progaurdSafeZone.DutchListItemVO
 
 interface DutchInfoRepository {
-    fun insertDutchInfo(homeDutchListItemVO: HomeDutchListItemVO)
-    fun selectDutchInfoList(): ArrayList<HomeDutchListItemVO>
+    fun insertDutchInfo(dutchListItemVO: DutchListItemVO)
+    fun selectDutchInfoList(): ArrayList<DutchListItemVO>
+    fun selectDutchEndInfoList(): ArrayList<DutchEndListItemVO>
+    fun updateDutchEndSomeInfo(name: String)
+    fun updateDutchEndAllInfo()
+    fun selectDutchTotalAmount(): Int
+    fun selectDutchHistoryInfoList(): ArrayList<DutchHistoryListItemVO>
 }

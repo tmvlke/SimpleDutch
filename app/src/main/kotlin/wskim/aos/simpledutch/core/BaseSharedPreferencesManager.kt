@@ -26,5 +26,6 @@ open class BaseSharedPreferencesManager(context: Context) {
     companion object {
         const val PREF_DEFAULT = "PREF_DEFAULT"
         const val SP_HOME_DUTCH_LIST_ITEM = "SP_HOME_DUTCH_LIST_ITEM"
+        const val SP_HOME_DUTCH_HISTORY_LIST_ITEM = "SP_HOME_DUTCH_HISTORY_LIST_ITEM"
     }
 }

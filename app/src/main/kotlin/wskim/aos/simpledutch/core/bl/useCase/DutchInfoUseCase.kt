@@ -1,7 +1,9 @@
 package wskim.aos.simpledutch.core.bl.useCase
 
 import wskim.aos.simpledutch.core.bl.repository.DutchInfoRepository
-import wskim.aos.simpledutch.progaurdSafeZone.HomeDutchListItemVO
+import wskim.aos.simpledutch.progaurdSafeZone.DutchEndListItemVO
+import wskim.aos.simpledutch.progaurdSafeZone.DutchHistoryListItemVO
+import wskim.aos.simpledutch.progaurdSafeZone.DutchListItemVO
 import javax.inject.Inject
 
 class DutchInfoUseCase @Inject constructor(
@@ -17,12 +19,37 @@ class DutchInfoUseCase @Inject constructor(
     }
 
     // 더치 페이 글쓰기
-    fun saveDutchInfo(homeDutchListItemVO: HomeDutchListItemVO) {
-        dutchInfoRepository.insertDutchInfo(homeDutchListItemVO)
+    fun saveDutchInfo(dutchListItemVO: DutchListItemVO) {
+        dutchInfoRepository.insertDutchInfo(dutchListItemVO)
     }
 
     // 더치 페이 목록 조회
-    fun findDutchInfoList() : ArrayList<HomeDutchListItemVO> {
+    fun findDutchInfoList() : ArrayList<DutchListItemVO> {
         return dutchInfoRepository.selectDutchInfoList()
+    }
+
+    // 더치 페이 정산 목록 조회
+    fun findDutchEndInfoList() : ArrayList<DutchEndListItemVO> {
+        return dutchInfoRepository.selectDutchEndInfoList()
+    }
+
+    // 더치 페이 개별 정산
+    fun modifyDutchEndSomeInfo(name: String) {
+        dutchInfoRepository.updateDutchEndSomeInfo(name = name)
+    }
+
+    // 더치 페이 전체 정산
+    fun modifyDutchEndAllInfo() {
+        dutchInfoRepository.updateDutchEndAllInfo()
+    }
+
+    // 더치 페이 정산 전 전체 가격
+    fun findDutchTotalAmount(): Int {
+        return dutchInfoRepository.selectDutchTotalAmount()
+    }
+
+    // 더치 페이 정산 된 전체 이력
+    fun findDutchHistoryInfoList(): ArrayList<DutchHistoryListItemVO> {
+        return dutchInfoRepository.selectDutchHistoryInfoList()
     }
 }
