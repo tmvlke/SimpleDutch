@@ -1,8 +1,24 @@
+import java.util.Calendar
+import java.util.Date
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+}
+
+fun getDateTime() : String {
+    val now = Date()
+    val calendar = Calendar.getInstance()
+    calendar.time = now
+
+    val month = calendar.get(Calendar.MONTH)+1
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
+    val hour = calendar.get(Calendar.HOUR_OF_DAY)
+    val minute = calendar.get(Calendar.MINUTE)
+
+    return "[${month}-${day} ${hour}:${minute}]"
 }
 
 dependencies {
@@ -70,25 +86,54 @@ android {
         }
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
     compileOptions {
         sourceCompatibility = AppConfig.javaVersion
         targetCompatibility = AppConfig.javaVersion
     }
+
     kotlinOptions {
         jvmTarget = AppConfig.jvmTarget
     }
+
     buildFeatures {
         compose = true
+        // 기존 BuildConfig 는 사용 되지 않음
+        buildConfig = false
     }
+
+    buildTypes {
+
+        getByName("debug") {
+            isMinifyEnabled = false
+            versionNameSuffix = "Debug"
+        }
+        getByName("release") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+//            signingConfig = signingConfigs.getByName("key")
+        }
+    }
+
+    // https://developer.android.com/studio/build?hl=ko
+    // https://github.com/mustafayigitt/KotlinDSL-BuildSrcExample/blob/master/app/build.gradle.kts
+    flavorDimensions.add("appType")
+    productFlavors {
+        create("dev") {
+            dimension = "appType"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev-${getDateTime()}"
+            manifestPlaceholders["applicationLabel"] = "@string/app_name_dev"
+        }
+        create("prod") {
+            dimension = "appType"
+            manifestPlaceholders["applicationLabel"] = "@string/app_name_prod"
+        }
+    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = AppConfig.kotlinCompilerExtensionVersion
     }
