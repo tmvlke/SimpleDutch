@@ -5,16 +5,64 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
+dependencies {
+
+    implementation(SdDependency.Androidx.core)
+    implementation(SdDependency.Androidx.lifecycle)
+    implementation(SdDependency.Androidx.activity)
+
+    implementation(platform(SdDependency.Androidx.Compose.Bom.bom))
+    implementation(SdDependency.Androidx.Compose.Bom.ui)
+    implementation(SdDependency.Androidx.Compose.Bom.uiGraphics)
+    implementation(SdDependency.Androidx.Compose.Bom.uiToolingPreview)
+    implementation(SdDependency.Androidx.Compose.Bom.material3)
+
+    implementation(SdDependency.Androidx.Compose.navigationCompose)
+    implementation(SdDependency.Androidx.Compose.hiltNavigationCompose)
+
+    implementation(SdDependency.Androidx.splashscreen)
+    implementation(SdDependency.Androidx.constraintlayoutCompose)
+
+    implementation(SdDependency.navigationAnimation)
+
+    implementation(SdDependency.coil)
+    implementation(SdDependency.gson)
+
+    implementation(SdDependency.Hilt.android)
+    kapt(SdDependency.Hilt.androidCompiler)
+
+    // tdd
+    testImplementation(SdTestDependency.Tdd.junit5)
+    testRuntimeOnly(SdTestDependency.Tdd.junit5Engine)
+    testImplementation(SdTestDependency.Tdd.junit5Params)
+    testRuntimeOnly(SdTestDependency.Tdd.junit5ParamsEngine)
+
+    testImplementation(SdTestDependency.Tdd.mockk)
+
+    testImplementation(SdTestDependency.Tdd.coroutines)
+
+    // bdd1
+    androidTestImplementation(SdTestDependency.Bdd.junit)
+    androidTestImplementation(platform(SdTestDependency.Bdd.composeBom))
+    androidTestImplementation(SdTestDependency.Bdd.composeJunit)
+
+    // bdd2
+    debugImplementation(SdTestDependency.Bdd.debugComposeTooling)
+    debugImplementation(SdTestDependency.Bdd.debugComposeManifest)
+}
+
 android {
     namespace = "wskim.aos.simpledutch"
-    compileSdk = 34
+    compileSdk = AppConfig.targetSdk
 
     defaultConfig {
         applicationId = "wskim.aos.simpledutch"
-        minSdk = 29
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+
+        minSdk = AppConfig.sdkMin
+        targetSdk = AppConfig.targetSdk
+        versionCode = AppConfig.versionCode
+        versionName = AppConfig.versionName
+        buildToolsVersion = AppConfig.buildToolsVersion
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -32,52 +80,21 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = AppConfig.javaVersion
+        targetCompatibility = AppConfig.javaVersion
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = AppConfig.jvmTarget
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = AppConfig.kotlinCompilerExtensionVersion
     }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-}
-
-dependencies {
-
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-    implementation("androidx.activity:activity-compose:1.8.0")
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
-
-    implementation("io.coil-kt:coil-compose:2.4.0")
-    implementation("androidx.navigation:navigation-compose:2.7.5")
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-    implementation("com.google.accompanist:accompanist-navigation-animation:0.33.1-alpha")
-    implementation("androidx.core:core-splashscreen:1.0.1")
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha13")
-    implementation("com.google.code.gson:gson:2.10.1")
-
-    implementation("com.google.dagger:hilt-android:2.48.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.48.1")
-
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
 }
