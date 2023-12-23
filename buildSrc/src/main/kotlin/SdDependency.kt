@@ -3,6 +3,14 @@ object SdDependency {
     const val coil = "io.coil-kt:coil-compose:2.5.0"
     const val gson = "com.google.code.gson:gson:2.10.1"
     const val navigationAnimation = "com.google.accompanist:accompanist-navigation-animation:0.33.1-alpha"
+    const val preference = "androidx.preference:preference-ktx:1.2.1"
+
+    object Coroutines {
+        // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"
+        // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-android
+        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
+    }
 
     object Androidx {
         const val core = "androidx.core:core-ktx:1.12.0"
@@ -13,7 +21,7 @@ object SdDependency {
         const val constraintlayoutCompose = "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha13"
         object Compose {
             object Bom {
-                const val bom = "androidx.compose:compose-bom:2023.03.00"
+                const val bom = "androidx.compose:compose-bom:2023.10.00"
                 const val ui = "androidx.compose.ui:ui"
                 const val uiGraphics = "androidx.compose.ui:ui-graphics"
                 const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"

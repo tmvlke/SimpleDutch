@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name_dev">심플더치(개발)</string>
+    <string name="app_name_prod">심플더치</string>
+
+    <string name="network_error_description">네트워크 연결이 필요합니다\n네트워크 연결 후 다시 시도 해주세요</string>
+    <string name="network_error_title">네트워크 연결 실패</string>
+    <string name="network_error_retry_button_text">제시도하기</string>
+</resources>
