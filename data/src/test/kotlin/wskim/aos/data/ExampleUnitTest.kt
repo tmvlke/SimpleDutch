@@ -1,17 +1,20 @@
 package wskim.aos.data
 
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.MethodOrderer
+import org.junit.jupiter.api.Order
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestMethodOrder
 
-import org.junit.Assert.*
-
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
+@TestMethodOrder(MethodOrderer.OrderAnnotation::class)
+@DisplayName("테스트")
 class ExampleUnitTest {
+
+    @DisplayName("")
+    @Order(1)
     @Test
-    fun addition_isCorrect() {
+    fun t01() {
         assertEquals(4, 2 + 2)
     }
 }

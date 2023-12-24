@@ -24,7 +24,7 @@ object CharFormatUtils {
                 result + "원"
             }
         } catch (e: NumberFormatException) {
-            amount.toString()
+            "0원"
         }
     }
 }
