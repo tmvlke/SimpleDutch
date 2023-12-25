@@ -24,7 +24,7 @@ class MainViewModel @Inject constructor(
     }
 
     override fun setInitialState(): MainContract.State = MainContract.State(
-        screenState = mutableStateOf(SdV1ScreenStateEnum.SUCCESS),
+        screenState = mutableStateOf(SdV1ScreenStateEnum.COMPLETE),
         openTab = mutableStateOf(MainTabEnum.Home),
     )
 

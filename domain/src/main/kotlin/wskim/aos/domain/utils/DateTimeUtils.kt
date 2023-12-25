@@ -12,6 +12,10 @@ object DateTimeUtils {
     private val dateFormat: SimpleDateFormat
         get() = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 
+    fun convertDate(date: Date): String {
+        return SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초", Locale.KOREA).format(date)
+    }
+
     fun todayToDash(): String {
         return try {
             dateFormat.format(Date())

@@ -59,7 +59,7 @@ fun HomeWriteScreenPreview() {
 
     HomeWriteScreen(
         state = HomeWriteContract.State(
-            screenState = remember { mutableStateOf(SdV1ScreenStateEnum.SUCCESS) },
+            screenState = remember { mutableStateOf(SdV1ScreenStateEnum.COMPLETE) },
             title = remember { MutableStateFlow("") },
             amount = remember { MutableStateFlow("") },
             enterPersonName = remember { mutableStateOf("") },

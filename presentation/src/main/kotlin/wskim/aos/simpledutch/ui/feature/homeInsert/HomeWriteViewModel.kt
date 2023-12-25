@@ -31,7 +31,7 @@ class HomeWriteViewModel @Inject constructor(
     }
 
     override fun setInitialState(): HomeWriteContract.State = HomeWriteContract.State(
-        screenState = mutableStateOf(SdV1ScreenStateEnum.SUCCESS),
+        screenState = mutableStateOf(SdV1ScreenStateEnum.COMPLETE),
         title = MutableStateFlow(""),
         amount = MutableStateFlow(""),
         enterPersonName = mutableStateOf(""),

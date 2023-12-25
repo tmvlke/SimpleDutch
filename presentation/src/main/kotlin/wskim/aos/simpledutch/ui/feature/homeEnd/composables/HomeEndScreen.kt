@@ -48,7 +48,7 @@ fun HomeEndScreenPreview() {
 
     HomeEndScreen(
         state = HomeEndContract.State(
-            screenState = remember { mutableStateOf(SdV1ScreenStateEnum.SUCCESS) },
+            screenState = remember { mutableStateOf(SdV1ScreenStateEnum.COMPLETE) },
             totalAmount = remember { mutableIntStateOf(100000) },
             enterPersonList = remember { mutableStateListOf(buildDutchEndListItemVOPreview()) },
             completeButtonEnabled = remember { mutableStateOf(false) }

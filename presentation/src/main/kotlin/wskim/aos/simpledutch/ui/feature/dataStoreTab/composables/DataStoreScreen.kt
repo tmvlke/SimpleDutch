@@ -19,7 +19,7 @@ fun DataStoreScreenPreview() {
 
     DataStoreScreen(
         state = DataStoreContract.State(
-            screenState = remember { mutableStateOf(SdV1ScreenStateEnum.SUCCESS) },
+            screenState = remember { mutableStateOf(SdV1ScreenStateEnum.COMPLETE) },
             list = remember { mutableStateListOf(buildDutchHistoryListItemVOPreview()) }
         ),
         effectFlow = null,

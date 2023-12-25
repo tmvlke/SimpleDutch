@@ -17,7 +17,7 @@ import wskim.aos.simpledutch.ui.feature.splash.SplashContract
 fun SplashScreenPreview() {
     SplashScreen(
         state = SplashContract.State(
-            screenState = remember { mutableStateOf(SdV1ScreenStateEnum.SUCCESS) },
+            screenState = remember { mutableStateOf(SdV1ScreenStateEnum.COMPLETE) },
         ),
         effectFlow = null,
         onEventSent = {},
@@ -47,7 +47,7 @@ fun SplashScreen(
     }
 
     BaseScreen(
-        screenState = remember { mutableStateOf(SdV1ScreenStateEnum.SUCCESS) },
+        screenState = remember { mutableStateOf(SdV1ScreenStateEnum.COMPLETE) },
         body = {
             SplashImage()
         }

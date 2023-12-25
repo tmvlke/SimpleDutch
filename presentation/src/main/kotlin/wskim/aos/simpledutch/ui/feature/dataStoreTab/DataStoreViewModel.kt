@@ -26,7 +26,7 @@ class DataStoreViewModel @Inject constructor(
     }
 
     override fun setInitialState(): DataStoreContract.State = DataStoreContract.State(
-        screenState = mutableStateOf(SdV1ScreenStateEnum.SUCCESS),
+        screenState = mutableStateOf(SdV1ScreenStateEnum.COMPLETE),
         list = mutableStateListOf()
     )
 

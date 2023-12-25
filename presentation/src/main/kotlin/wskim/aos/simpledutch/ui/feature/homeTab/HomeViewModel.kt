@@ -27,7 +27,7 @@ class HomeViewModel @Inject constructor(
     }
 
     override fun setInitialState(): HomeContract.State = HomeContract.State(
-        screenState = mutableStateOf(SdV1ScreenStateEnum.SUCCESS),
+        screenState = mutableStateOf(SdV1ScreenStateEnum.COMPLETE),
         totalAmount = mutableIntStateOf(0),
         list = mutableStateListOf()
     )

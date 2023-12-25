@@ -10,10 +10,7 @@ dependencies {
     implementation(project(":domain"))
 
     // SharedPreferences
-    implementation(SdDependency.preference)
-
-    // gson
-    implementation(SdDependency.gson)
+    implementation(SdDependency.Repository.preference)
 
     // hilt
     implementation(SdDependency.Hilt.android)

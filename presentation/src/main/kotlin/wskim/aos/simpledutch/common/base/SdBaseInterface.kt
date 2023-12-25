@@ -15,9 +15,8 @@ interface BaseViewState {
     val screenState: MutableState<SdV1ScreenStateEnum>
 }
 enum class SdV1ScreenStateEnum{
-    SUCCESS,
+    COMPLETE,
     LOADING,
-    FAILURE
 }
 
 

@@ -26,7 +26,7 @@ class SplashViewModel @Inject constructor(
     }
 
     override fun setInitialState(): SplashContract.State = SplashContract.State(
-        screenState = mutableStateOf(SdV1ScreenStateEnum.SUCCESS),
+        screenState = mutableStateOf(SdV1ScreenStateEnum.COMPLETE),
     )
 
     override suspend fun setInitialData() {}

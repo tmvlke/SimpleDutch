@@ -27,27 +27,28 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
 
-    implementation(SdDependency.Androidx.core)
-    implementation(SdDependency.Androidx.lifecycle)
-    implementation(SdDependency.Androidx.activity)
+    // ktx
+    implementation(SdDependency.Ktx.core)
+    implementation(SdDependency.Ktx.lifecycleRuntime)
+    implementation(SdDependency.Compose.activity)
 
-    implementation(platform(SdDependency.Androidx.Compose.Bom.bom))
-    implementation(SdDependency.Androidx.Compose.Bom.ui)
-    implementation(SdDependency.Androidx.Compose.Bom.uiGraphics)
-    implementation(SdDependency.Androidx.Compose.Bom.uiToolingPreview)
-    implementation(SdDependency.Androidx.Compose.Bom.material3)
+    implementation(platform(SdDependency.Compose.bom)) // compose
+    implementation(SdDependency.Compose.ui)
+    implementation(SdDependency.Compose.graphics)
+    implementation(SdDependency.Compose.preview)
+    implementation(SdDependency.Compose.material3)
 
-    implementation(SdDependency.Androidx.Compose.navigationCompose)
-    implementation(SdDependency.Androidx.Compose.hiltNavigationCompose)
+    implementation(SdDependency.Navigation.compose) // navigation
+    implementation(SdDependency.Navigation.hilt)
 
-    implementation(SdDependency.Androidx.splashscreen)
-    implementation(SdDependency.Androidx.constraintlayoutCompose)
+    implementation(SdDependency.defaultSplash) // default splash
+    implementation(SdDependency.Compose.constraint)
 
-    implementation(SdDependency.navigationAnimation)
+    implementation(SdDependency.Navigation.animation)
 
-    implementation(SdDependency.coil)
-    implementation(SdDependency.gson)
+    implementation(SdDependency.coil) // coil
 
+    // Hilt
     implementation(SdDependency.Hilt.android)
     kapt(SdDependency.Hilt.androidCompiler)
 
@@ -91,8 +92,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = AppConfig.javaVersion
-        targetCompatibility = AppConfig.javaVersion
+        sourceCompatibility(AppConfig.javaVersion)
+        targetCompatibility(AppConfig.javaVersion)
     }
 
     kotlinOptions {

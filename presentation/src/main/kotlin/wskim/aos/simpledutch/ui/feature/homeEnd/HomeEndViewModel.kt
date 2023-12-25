@@ -27,7 +27,7 @@ class HomeEndViewModel @Inject constructor(
     }
 
     override fun setInitialState(): HomeEndContract.State = HomeEndContract.State(
-        screenState = mutableStateOf(SdV1ScreenStateEnum.SUCCESS),
+        screenState = mutableStateOf(SdV1ScreenStateEnum.COMPLETE),
         totalAmount = mutableIntStateOf(0),
         enterPersonList = mutableStateListOf(),
         completeButtonEnabled = mutableStateOf(false)

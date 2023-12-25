@@ -12,6 +12,9 @@ dependencies {
     api(SdDependency.Coroutines.core)
     api(SdDependency.Coroutines.android)
 
+    // gson
+    api(SdDependency.gson)
+
     // Hilt
     implementation(SdDependency.Hilt.android)
     kapt(SdDependency.Hilt.androidCompiler)

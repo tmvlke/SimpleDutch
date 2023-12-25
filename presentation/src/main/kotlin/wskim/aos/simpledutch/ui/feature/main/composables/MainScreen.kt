@@ -50,7 +50,7 @@ fun MainScreenPreview() {
 
     MainScreen(
         state = MainContract.State(
-            screenState = remember { mutableStateOf(SdV1ScreenStateEnum.SUCCESS) },
+            screenState = remember { mutableStateOf(SdV1ScreenStateEnum.COMPLETE) },
             openTab = remember { mutableStateOf(MainTabEnum.Home) },
         ),
         effectFlow = null,
@@ -91,7 +91,7 @@ fun MainScreen(
     }
 
     BaseScreen(
-        screenState = remember { mutableStateOf(SdV1ScreenStateEnum.SUCCESS) },
+        screenState = remember { mutableStateOf(SdV1ScreenStateEnum.COMPLETE) },
         body = {
             Box(modifier = Modifier.fillMaxSize()) {
                 HorizontalPager(

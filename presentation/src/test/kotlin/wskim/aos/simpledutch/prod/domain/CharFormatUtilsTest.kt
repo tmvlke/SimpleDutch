@@ -1,16 +1,21 @@
-package wskim.aos.simpledutch
+package wskim.aos.simpledutch.prod.domain
 
-import wskim.aos.domain.utils.CharFormatUtils
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.MethodOrderer
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestMethodOrder
+import wskim.aos.domain.utils.CharFormatUtils
+import wskim.aos.simpledutch.core.BaseCoroutineTest
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)
 @DisplayName("문자열 형식 유틸 클래스 테스트")
-class CharFormatUtilsTest {
+class CharFormatUtilsTest : BaseCoroutineTest() {
+
+    override fun onStart() {}
+
+    override fun onEnd() {}
 
     @DisplayName("amount에 null 값을 전달하면 0원으로 반환되는가?")
     @Order(1)
