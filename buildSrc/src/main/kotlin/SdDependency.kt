@@ -16,7 +16,7 @@ object SdDependency {
 
     // https://mvnrepository.com/artifact/com.google.code.gson/gson
     const val gson = "com.google.code.gson:gson:2.10.1"
-    const val coil = "io.coil-kt:coil-compose:2.5.0"
+    const val coil = "io.coil-kt:coil-compose:2.4.0"
     // https://androidx.tech/artifacts/core/core-splashscreen/
     const val defaultSplash = "androidx.core:core-splashscreen:1.1.0-alpha02"
 
