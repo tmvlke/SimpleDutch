@@ -11,7 +11,7 @@ import wskim.aos.simpledutch.ui.feature.main.composables.MainScreen
 import wskim.aos.simpledutch.MainActivity
 import wskim.aos.simpledutch.ui.feature.main.MainContract
 import wskim.aos.simpledutch.ui.feature.main.MainViewModel
-import wskim.aos.simpledutch.ui.navigation.PageMoveActions
+import wskim.aos.baseuikit.navigation.PageMoveActions
 
 @Composable
 fun MainPage(actions: PageMoveActions, navBackStackEntry: NavBackStackEntry) {

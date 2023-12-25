@@ -1,11 +1,11 @@
 package wskim.aos.simpledutch.ui.feature.main
 
 import androidx.compose.runtime.MutableState
-import wskim.aos.simpledutch.common.base.BaseViewEvent
-import wskim.aos.simpledutch.common.base.BaseViewSideEffect
-import wskim.aos.simpledutch.common.base.BaseViewState
-import wskim.aos.simpledutch.common.base.SdV1ScreenStateEnum
-import wskim.aos.simpledutch.ui.navigation.MainTabEnum
+import wskim.aos.baseuikit.base.BaseViewEvent
+import wskim.aos.baseuikit.base.BaseViewSideEffect
+import wskim.aos.baseuikit.base.BaseViewState
+import wskim.aos.baseuikit.base.SdV1ScreenStateEnum
+import wskim.aos.baseuikit.navigation.MainTabEnum
 
 
 class MainContract {

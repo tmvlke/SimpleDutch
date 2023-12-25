@@ -17,8 +17,8 @@ import wskim.aos.domain.proguardSafeZone.vo.DutchPersonVO
 import wskim.aos.domain.repository.DutchInfoRepository
 import wskim.aos.domain.usecase.DutchInfoUseCase
 import wskim.aos.simpledutch.core.BaseCoroutineTest
-import wskim.aos.simpledutch.ui.feature.homeInsert.HomeWriteContract
-import wskim.aos.simpledutch.ui.feature.homeInsert.HomeWriteViewModel
+import wskim.aos.hometab.feature.homeInsert.HomeWriteContract
+import wskim.aos.hometab.feature.homeInsert.HomeWriteViewModel
 
 @ExperimentalCoroutinesApi
 @TestMethodOrder(MethodOrderer.OrderAnnotation::class)

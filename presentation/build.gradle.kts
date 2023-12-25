@@ -24,29 +24,12 @@ fun getDateTime() : String {
 
 dependencies {
 
-    implementation(project(":domain"))
-    implementation(project(":data"))
+    implementation(project(mapOf("path" to ":presentation:baseUiKit")))
+    implementation(project(mapOf("path" to ":presentation:homeTab")))
+    implementation(project(mapOf("path" to ":presentation:storageTab")))
 
-    // ktx
-    implementation(SdDependency.Ktx.core)
-    implementation(SdDependency.Ktx.lifecycleRuntime)
-    implementation(SdDependency.Compose.activity)
-
-    implementation(platform(SdDependency.Compose.bom)) // compose
-    implementation(SdDependency.Compose.ui)
-    implementation(SdDependency.Compose.graphics)
-    implementation(SdDependency.Compose.preview)
-    implementation(SdDependency.Compose.material3)
-
-    implementation(SdDependency.Navigation.compose) // navigation
-    implementation(SdDependency.Navigation.hilt)
-
-    implementation(SdDependency.defaultSplash) // default splash
-    implementation(SdDependency.Compose.constraint)
-
-    implementation(SdDependency.Navigation.animation)
-
-    implementation(SdDependency.coil) // coil
+    // default splash
+    implementation(SdDependency.defaultSplash)
 
     // Hilt
     implementation(SdDependency.Hilt.android)

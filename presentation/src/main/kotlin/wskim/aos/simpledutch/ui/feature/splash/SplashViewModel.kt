@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import wskim.aos.simpledutch.common.base.SdV1ViewModel
-import wskim.aos.simpledutch.common.base.SdV1ScreenStateEnum
+import wskim.aos.baseuikit.base.SdV1ViewModel
+import wskim.aos.baseuikit.base.SdV1ScreenStateEnum
 import javax.inject.Inject
 
 @HiltViewModel

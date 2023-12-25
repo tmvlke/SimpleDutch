@@ -17,3 +17,6 @@ rootProject.name = "SimpleDutch"
 include(":domain")
 include(":data")
 include(":presentation")
+include(":presentation:baseUiKit")
+include(":presentation:homeTab")
+include(":presentation:storageTab")

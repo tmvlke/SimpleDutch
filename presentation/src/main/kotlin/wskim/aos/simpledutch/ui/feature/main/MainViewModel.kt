@@ -2,9 +2,9 @@ package wskim.aos.simpledutch.ui.feature.main
 
 import androidx.compose.runtime.mutableStateOf
 import dagger.hilt.android.lifecycle.HiltViewModel
-import wskim.aos.simpledutch.common.base.SdV1ScreenStateEnum
-import wskim.aos.simpledutch.common.base.SdV1ViewModel
-import wskim.aos.simpledutch.ui.navigation.MainTabEnum
+import wskim.aos.baseuikit.base.SdV1ScreenStateEnum
+import wskim.aos.baseuikit.base.SdV1ViewModel
+import wskim.aos.baseuikit.navigation.MainTabEnum
 import javax.inject.Inject
 
 @HiltViewModel

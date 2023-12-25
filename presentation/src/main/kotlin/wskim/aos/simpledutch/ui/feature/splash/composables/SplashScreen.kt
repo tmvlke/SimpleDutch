@@ -7,9 +7,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.flow.Flow
-import wskim.aos.simpledutch.common.base.BaseScreen
-import wskim.aos.simpledutch.common.base.SIDE_EFFECTS_KEY
-import wskim.aos.simpledutch.common.base.SdV1ScreenStateEnum
+import wskim.aos.baseuikit.base.BaseScreen
+import wskim.aos.baseuikit.base.SIDE_EFFECTS_KEY
+import wskim.aos.baseuikit.base.SdV1ScreenStateEnum
 import wskim.aos.simpledutch.ui.feature.splash.SplashContract
 
 @Preview(showBackground = true)

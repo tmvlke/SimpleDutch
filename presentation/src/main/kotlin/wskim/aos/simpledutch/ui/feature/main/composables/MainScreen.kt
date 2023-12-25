@@ -32,17 +32,17 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import kotlinx.coroutines.flow.Flow
-import wskim.aos.simpledutch.common.base.BaseScreen
-import wskim.aos.simpledutch.common.base.SIDE_EFFECTS_KEY
-import wskim.aos.simpledutch.common.base.SdV1ScreenStateEnum
-import wskim.aos.simpledutch.common.compose.singleClick
+import wskim.aos.baseuikit.base.BaseScreen
+import wskim.aos.baseuikit.base.SIDE_EFFECTS_KEY
+import wskim.aos.baseuikit.base.SdV1ScreenStateEnum
+import wskim.aos.baseuikit.compose.singleClick
 import wskim.aos.simpledutch.ui.feature.main.MainContract
-import wskim.aos.simpledutch.ui.navigation.MainTabEnum
-import wskim.aos.simpledutch.ui.navigation.PageMoveActions
-import wskim.aos.simpledutch.ui.navigation.page.DataStorePage
-import wskim.aos.simpledutch.ui.navigation.page.HomePage
-import wskim.aos.simpledutch.ui.theme.Blue
-import wskim.aos.simpledutch.ui.theme.Gray
+import wskim.aos.baseuikit.navigation.MainTabEnum
+import wskim.aos.baseuikit.navigation.PageMoveActions
+import wskim.aos.storagetab.navigation.page.DataStorePage
+import wskim.aos.hometab.navigation.page.HomePage
+import wskim.aos.baseuikit.theme.Blue
+import wskim.aos.baseuikit.theme.Gray
 
 @Preview(showBackground = true)
 @Composable

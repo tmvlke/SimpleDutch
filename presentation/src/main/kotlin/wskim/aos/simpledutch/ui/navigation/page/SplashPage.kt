@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import wskim.aos.simpledutch.ui.feature.splash.SplashContract
 import wskim.aos.simpledutch.ui.feature.splash.SplashViewModel
 import wskim.aos.simpledutch.ui.feature.splash.composables.SplashScreen
-import wskim.aos.simpledutch.ui.navigation.PageMoveActions
+import wskim.aos.baseuikit.navigation.PageMoveActions
 
 @Composable
 fun SplashPage(actions: PageMoveActions, navBackStackEntry: NavBackStackEntry) {

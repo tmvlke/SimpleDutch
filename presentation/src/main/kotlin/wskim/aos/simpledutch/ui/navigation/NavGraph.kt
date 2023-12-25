@@ -4,10 +4,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import wskim.aos.simpledutch.ui.navigation.page.HomeEndPage
-import wskim.aos.simpledutch.ui.navigation.page.HomeWritePage
+import wskim.aos.baseuikit.navigation.PageList
+import wskim.aos.baseuikit.navigation.PageMoveActions
+import wskim.aos.baseuikit.navigation.buildFadeInToOutPage
+import wskim.aos.baseuikit.navigation.buildStartToEndPage
+import wskim.aos.hometab.navigation.homeTabGraph
 import wskim.aos.simpledutch.ui.navigation.page.MainPage
 import wskim.aos.simpledutch.ui.navigation.page.SplashPage
+import wskim.aos.storagetab.navigation.storageTabGraph
 
 @Composable
 fun NavGraph() {
@@ -29,19 +33,18 @@ fun NavGraph() {
         ///////////////////////////////////////////////////////
         // 메인
         ///////////////////////////////////////////////////////
-        // 회원 가입 - 유저 정보 입력 페이지 (휴대폰 인증)
         buildStartToEndPage(PageList.Main.route) {
             MainPage(actions, it)
         }
 
-        // 홈 글쓰기 페이지
-        buildTopToBottomPage(PageList.HomeWrite.route) {
-            HomeWritePage(actions, it)
-        }
+        ///////////////////////////////////////////////////////
+        // 홈 탭
+        ///////////////////////////////////////////////////////
+        homeTabGraph(actions)
 
-        // 홈 정산 페이지
-        buildTopToBottomPage(PageList.HomeEnd.route) {
-            HomeEndPage(actions, it)
-        }
+        ///////////////////////////////////////////////////////
+        // 저장소 탭
+        ///////////////////////////////////////////////////////
+        storageTabGraph(actions)
     }
 }
