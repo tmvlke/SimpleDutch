@@ -166,14 +166,23 @@ fun MainScreen(
                         contentAlignment = Center
                     ) {
 
-                        Text(
+                        // 불필요한 리컴포지션 방지
+                        TabText(
                             text = mainTab.title,
-                            color = if (state.openTab.value.ordinal == index) Blue else Gray,
-                            fontWeight = if (state.openTab.value.ordinal == index) FontWeight.W600 else FontWeight.Normal
+                            isSelected = state.openTab.value.ordinal == index
                         )
                     }
                 }
             }
         }
+    )
+}
+
+@Composable
+fun TabText(text: String, isSelected: Boolean) {
+    Text(
+        text = text,
+        color = if (isSelected) Blue else Gray,
+        fontWeight = if (isSelected) FontWeight.W600 else FontWeight.Normal
     )
 }
