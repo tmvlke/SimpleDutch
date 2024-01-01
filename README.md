@@ -4,7 +4,7 @@ Use of fair and convenient sharing of group dining expenses
 
 <br>
 
-![project image or logo](https://opencv1.b-cdn.net/wp-content/uploads/2022/05/logo.png)<br>
+![project image or logo](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcA2usv%2FbtsCw9NjObE%2FNQuzFttXhLZcaXS38iZuGk%2Fimg.jpg)<br>
 
 <br><br>
 
